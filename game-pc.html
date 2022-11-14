@@ -9,7 +9,9 @@
 		overflow: hidden;
 	}
 </style>
-<div class="fixed text-white text-sm ml-2 mt-1 select-none"><span>Score: </span><span id="scoreEL">0</span></div>
+<div class="fixed text-white text-sm ml-2 mt-1 select-none"><span>Score: </span><span id="scoreEL">0</span>
+<span>highscore: <span id="scored">0</span></span>
+</div>
 <div class="fixed inset-0 flex items-center justify-center" id="modalEl">
 	<div class="bg-white max-w-md w-full p-6 text-center">
 		<h1 class="text-4xl font-bold leading-none" id="bigScoreEl">0</h1>
@@ -30,7 +32,8 @@
 	canvas.width = innerWidth
 	canvas.height = innerHeight
 	var ctx = canvas.getContext('2d')
-
+	const highScore = document.getElementById("scored")
+	const hiscore = localStorage
 	const scoreEL = document.getElementById("scoreEL")
 	const startGameBTN = document.getElementById("startGameBTN")
 	const modalEl = document.getElementById("modalEl")
@@ -185,8 +188,16 @@ const projectile = new Projectile(
 )*/
 let animationId
 let score = 0
+if (hiscore.getItem("high") != undefined) {
+	highScore.innerHTML = hiscore.getItem('high')
+}
 function animate(){
-
+if (hiscore.getItem('high') < score) {
+	hiscore.setItem('high',score)
+}
+if (hiscore.getItem("high") != undefined) {
+	highScore.innerHTML = hiscore.getItem('high')
+}
 	if (right) {
 		player.x += 3
 	}
@@ -239,6 +250,11 @@ function animate(){
 			cancelAnimationFrame(animationId)
 			modalEl.style.display = 'flex'
 			bigScoreEl.innerHTML = score
+			if (hiscore.getItem('high') == undefined) {
+				hiscore.setItem('high',score)
+			}else {
+				hiscore.setItem('high',score)
+				}
 			}
 
 		projectiles.forEach((projectile, projectileIndex )=>{
@@ -291,6 +307,18 @@ addEventListener('keydown',(key)=>{
 	if (key.code == "ArrowRight") {
 		right = true
 	}
+	if(key.code == "KeyS"){
+		down = true
+	}
+	if (key.code == "KeyW") {
+		up = true
+	}
+	if(key.code == "KeyD"){
+		right = true
+	}
+	if (key.code == "KeyA") {
+		left = true
+	}
 })
 addEventListener('keyup',(key)=>{
 	
@@ -307,6 +335,18 @@ addEventListener('keyup',(key)=>{
 
 	if (key.code == "ArrowRight") {
 		right = false
+	}
+	if (key.code == "KeyS") {
+		down = false
+	}
+	if(key.code == "KeyW"){
+		up = false
+	}
+	if(key.code == "KeyD"){
+		right = false
+	}
+	if (key.code == "KeyA") {
+		left = false
 	}
 })
 addEventListener('click',(e) => 

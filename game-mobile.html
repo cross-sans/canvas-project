@@ -9,7 +9,9 @@
 		overflow: hidden;
 	}
 </style>
-<div class="fixed text-white text-sm ml-2 mt-1 select-none"><span>Score: </span><span id="scoreEL">0</span></div>
+<div class="fixed text-white text-sm ml-2 mt-1 select-none"><span>Score: </span><span id="scoreEL">0</span>
+<span>highscore: <span id="scored">0</span></span>
+</div>
 <div class="fixed inset-0 flex items-center justify-center" id="modalEl">
 	<div class="bg-white max-w-md w-full p-6 text-center">
 		<h1 class="text-4xl font-bold leading-none" id="bigScoreEl">0</h1>
@@ -30,7 +32,8 @@
 	canvas.width = innerWidth
 	canvas.height = innerHeight
 	var ctx = canvas.getContext('2d')
-
+	const hiscore = localStorage
+	const highScore = document.getElementById("scored")
 	const scoreEL = document.getElementById("scoreEL")
 	const startGameBTN = document.getElementById("startGameBTN")
 	const modalEl = document.getElementById("modalEl")
@@ -182,6 +185,13 @@ const projectile = new Projectile(
 let animationId
 let score = 0
 function animate(){
+
+if (hiscore.getItem('high') < score) {
+	hiscore.setItem('high',score)
+}
+if (hiscore.getItem("high") != undefined) {
+	highScore.innerHTML = hiscore.getItem('high')
+}
 	animationId = requestAnimationFrame(animate)
 	ctx.fillStyle='rgba(0,0,0,0.1)'
 	ctx.fillRect(0, 0, canvas.width,canvas.height)
