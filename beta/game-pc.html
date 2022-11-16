@@ -1,3 +1,4 @@
+<title>pc versiion.beta</title>
 <meta name="viewport" content="width=device-width, user-scalable=no" />
 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 <style type="text/css">
@@ -188,15 +189,15 @@ const projectile = new Projectile(
 )*/
 let animationId
 let score = 0
-if (hiscore.getItem("high") != undefined) {
-	highScore.innerHTML = hiscore.getItem('high')
+if (hiscore.getItem("highPc") != undefined) {
+	highScore.innerHTML = hiscore.getItem('highPc')
 }
 function animate(){
-if (hiscore.getItem('high') < score) {
-	hiscore.setItem('high',score)
+if (hiscore.getItem('highPc') < score) {
+	hiscore.setItem('highPc',score)
 }
-if (hiscore.getItem("high") != undefined) {
-	highScore.innerHTML = hiscore.getItem('high')
+if (hiscore.getItem("highPc") != undefined) {
+	highScore.innerHTML = hiscore.getItem('highPc')
 }
 	if (right) {
 		player.x += 3
@@ -250,10 +251,10 @@ if (hiscore.getItem("high") != undefined) {
 			cancelAnimationFrame(animationId)
 			modalEl.style.display = 'flex'
 			bigScoreEl.innerHTML = score
-			if (hiscore.getItem('high') == undefined) {
-				hiscore.setItem('high',score)
+			if (hiscore.getItem('highPc') == undefined) {
+				hiscore.setItem('highPc',score)
 			}else {
-				hiscore.setItem('high',score)
+				hiscore.setItem('highPc',score)
 				}
 			}
 

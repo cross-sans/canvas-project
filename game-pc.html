@@ -1,3 +1,4 @@
+<title>pc version</title>
 <meta name="viewport" content="width=device-width, user-scalable=no" />
 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 <style type="text/css">
@@ -291,6 +292,18 @@ addEventListener('keydown',(key)=>{
 	if (key.code == "ArrowRight") {
 		right = true
 	}
+	if(key.code == "KeyS"){
+		down = true
+	}
+	if (key.code == "KeyW") {
+		up = true
+	}
+	if(key.code == "KeyD"){
+		right = true
+	}
+	if (key.code == "KeyA") {
+		left = true
+	}
 })
 addEventListener('keyup',(key)=>{
 	
@@ -307,6 +320,18 @@ addEventListener('keyup',(key)=>{
 
 	if (key.code == "ArrowRight") {
 		right = false
+	}
+	if (key.code == "KeyS") {
+		down = false
+	}
+	if(key.code == "KeyW"){
+		up = false
+	}
+	if(key.code == "KeyD"){
+		right = false
+	}
+	if (key.code == "KeyA") {
+		left = false
 	}
 })
 addEventListener('click',(e) => 
